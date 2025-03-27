@@ -44,3 +44,31 @@ To set up the frontend, follow these steps:
 
 4. Open your web browser and navigate to `http://127.0.0.1:5000` to access the POS system.
 
+## How to Run the Program
+
+To run the program, follow these steps:
+
+1. Ensure you have Python and Flask installed. If not, install them using the following commands:
+   ```bash
+   pip install Flask
+   ```
+
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/Hayato360/TestCopilot.git
+   cd TestCopilot
+   ```
+
+3. Initialize the database:
+   ```bash
+   flask db init
+   flask db migrate
+   flask db upgrade
+   ```
+
+4. Run the Flask application:
+   ```bash
+   flask run
+   ```
+
+5. Open your web browser and navigate to `http://127.0.0.1:5000` to access the POS system.
