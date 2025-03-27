@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Order Processing</h2>
+    <form method="POST" action="{{ url_for('order') }}">
+        <div class="form-group">
+            <label for="table_number">Table Number</label>
+            <input type="number" class="form-control" id="table_number" name="table_number" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Order</button>
+    </form>
+
+    <h3 class="mt-5">Current Orders</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Table Number</th>
+                <th>Total</th>
+                <th>Timestamp</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.table_number }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.timestamp }}</td>
+                <td>
+                    <a href="{{ url_for('add_order_item', order_id=order.id) }}" class="btn btn-success btn-sm">Add Item</a>
+                    <a href="{{ url_for('remove_order_item', order_id=order.id) }}" class="btn btn-danger btn-sm">Remove Item</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

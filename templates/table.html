@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Table Management</h2>
+    <form method="POST" action="{{ url_for('table') }}">
+        <div class="form-group">
+            <label for="table_number">Table Number</label>
+            <input type="number" class="form-control" id="table_number" name="table_number" required>
+        </div>
+        <div class="form-group">
+            <label for="order_id">Order ID</label>
+            <input type="number" class="form-control" id="order_id" name="order_id" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Assign Order to Table</button>
+    </form>
+    <hr>
+    <h3>Current Orders</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Table Number</th>
+                <th>Total</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.table_number }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

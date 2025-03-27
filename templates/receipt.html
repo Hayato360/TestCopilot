@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Receipt</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Order ID: {{ order.id }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Table Number: {{ order.table_number }}</h6>
+            <p class="card-text">Timestamp: {{ order.timestamp }}</p>
+            <h6 class="card-subtitle mb-2">Items:</h6>
+            <ul class="list-group list-group-flush">
+                {% for item in order.items %}
+                <li class="list-group-item">
+                    {{ item.menu_item.name }} - {{ item.quantity }} x ${{ item.menu_item.price }}
+                </li>
+                {% endfor %}
+            </ul>
+            <h5 class="card-title mt-3">Total: ${{ order.total }}</h5>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-3" onclick="window.print()">Print Receipt</button>
+</div>
+{% endblock %}
